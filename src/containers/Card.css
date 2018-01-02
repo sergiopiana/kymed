@@ -1,0 +1,21 @@
+.root{
+
+}
+
+.Card{
+  width: 20%;
+}
+.cardTitle{
+  background-color:#0074c2;
+  height: 50px;
+  text-align: center;
+  padding-top: 8px;
+}
+.cardTitleText{
+color: white;
+
+line-height: 0.5; 
+}
+.smallCenter{
+  text-align: center;
+}
