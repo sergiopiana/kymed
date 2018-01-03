@@ -16,7 +16,12 @@ import * as pacientesActions from '../ducks/pacientes';
 class FormAlta extends React.Component {
 
   click(){
-    this.props.fetchAddTurno();
+    const dia = $('#dia').val();
+    const fecha = $('#fecha').val();
+    const profesional = $('#profesional').val();
+    const paciente = $('#paciente').val();
+    const hora = $('#hora').val();
+    this.props.fetchAddTurno(dia, fecha, paciente, profesional, hora);
   }
   
   render() {
@@ -114,12 +119,10 @@ class FormAlta extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAddTurno: () => dispatch(fetchAddTurno(5,'dia','fecha','id','paciente','profesional','9:30'))
-  };
-};
+const mapStateToProps = state => ({
+  pacientes: state.pacientes,
+});
 
-export default connect(mapDispatchToProps, pacientesActions)(withStyles(s)(FormAlta),
+export default connect(mapStateToProps, pacientesActions)(withStyles(s)(FormAlta),
 );
 

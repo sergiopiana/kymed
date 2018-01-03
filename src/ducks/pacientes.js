@@ -7,7 +7,7 @@ export const fetchPacientes = () => ({
   type: FETCH_PACIENTES,
 });
 
-export const fetchAddTurno = (idDia,dia,fecha,turnos,id,paciente,profesional,horario) => ({
+export const fetchAddTurno = (dia,fecha,paciente,profesional,horario) => ({
   type: FETCH_ADD_TURNO,
   payload: {
     idDia: '3',
