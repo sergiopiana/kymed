@@ -46,10 +46,7 @@ export default function reducer(state = [], action) {
                   ]}
               ]
     case FETCH_ADD_TURNO:
-    return[
-      ...state,
-      action.payload                      
-          ]
+    return[...state, action.payload]
     default:
       return state;
   }

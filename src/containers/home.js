@@ -27,5 +27,4 @@ componentDidMount() {
     pacientes: state.pacientes,
   });
   
-  export default connect(mapStateToProps,  pacientesActions)((Home),
-  );
+  export default connect(mapStateToProps,  pacientesActions)(Home);

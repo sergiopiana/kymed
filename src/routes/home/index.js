@@ -1,6 +1,3 @@
-/**
- * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
- */
 
 import React from 'react';
 import HomePage from './HomePage';

@@ -1,30 +1,40 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
 
 import React from 'react';
+import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Header.css';
+import _ from 'lodash';
+import * as authActions from '../../ducks/auth';
 
 class Header extends React.Component {
   render() {
+    if (_.isEmpty(this.props.auth)){
+      return(
+      <div className={s.root}>
+        <div className="container-fluid">
+          <nav className="navbar navbar-dark bg-primary">
+            <span className="navbar-brand">
+             Kymed - Autenticación de usuario
+            </span>
+          </nav>
+        </div>
+      </div>        
+      )
+    }
     return (
       <div className={s.root}>
         <div className="container-fluid">
           <nav className="navbar navbar-dark bg-primary">
-            <a className="navbar-brand" href="#">
-              Kymed
-            </a>
+            <span className="navbar-brand">
+              <b>Kymed - Bienvenido:</b> {this.props.auth.nombre} {this.props.auth.apellido}
+            </span>
           </nav>
         </div>
       </div>
     );
   }
 }
-
-export default withStyles(s)(Header);
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, authActions)(withStyles(s)(Header));

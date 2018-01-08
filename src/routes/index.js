@@ -10,6 +10,7 @@ const routes = {
       path: '/',
       load: () => import(/* webpackChunkName: 'home' */ './home'),
     },
+
   ],
 
   async action({ next }) {
