@@ -3,9 +3,12 @@ const FETCH_PACIENTES = 'pacientes/FETCH_PACIENTES';
 const FETCH_ADD_TURNO = 'pacientes/FETCH_ADD_TURNO';
 
 // ACTIONS
-export const fetchPacientes = () => ({
-  type: FETCH_PACIENTES,
-});
+export function fetchPacientes(){
+return dispatch =>{
+  fetch('api/turnos');
+}
+  //type: FETCH_PACIENTES,
+};
 
 export const fetchAddTurno = (dia,fecha,paciente,profesional,horario) => ({
   type: FETCH_ADD_TURNO,
@@ -35,7 +38,8 @@ export default function reducer(state = [], action) {
   // const newState = { ...state };
   switch (action.type) {
     case FETCH_PACIENTES:
-      return [
+        return[]
+      /*return [
                   {idDia: '1', dia:'lunes', fecha:'01/01/2018',  turnos: [
                     {id:'1', paciente: 'Sergio Luis' , profesional: 'sasa papa', horario: '7.45' },
                     {id:'2', paciente: 'Ursula' , profesional: 'peter', horario: '10.30' }
@@ -44,7 +48,8 @@ export default function reducer(state = [], action) {
                     {id:'3', paciente: 'Juan Perez' , profesional: 'sasa papa', horario: '10.30' },
                     {id:'4', paciente: 'Roger ' , profesional: 'Pablo sasa', horario: '12.30' }
                   ]}
-              ]
+              ]*/
+
     case FETCH_ADD_TURNO:
     return[...state, action.payload]
     default:

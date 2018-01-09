@@ -36,7 +36,9 @@
     "intl-locales-supported": "^1.0.0",
     "isomorphic-style-loader": "^3.0.0",
     "jsonwebtoken": "^7.4.1",
+    "mongodb": "^3.0.1",
     "node-fetch": "^1.7.1",
+    "nodemon": "^1.14.9",
     "normalize.css": "^7.0.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
@@ -210,5 +212,7 @@
     "serve": "babel-node tools/run runServer",
     "start": "babel-node tools/run start",
     "cc": "node tools/wizard.js cc"
-  }
+  },
+  "proxy":"http://localhost:8080"
+
 }

@@ -50,6 +50,8 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
+
+
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(
