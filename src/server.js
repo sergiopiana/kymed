@@ -51,7 +51,6 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
 
-
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(
@@ -78,7 +77,6 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 
-
 app.get('/obtenerIntegrantes', (req, res) => {
   const json = [
     {
@@ -101,8 +99,6 @@ app.get('/obtenerIntegrantes', (req, res) => {
 
   res.status(200).send(json);
 });
-
-
 
 app.post('/auth', (req, res) => {
   const url =
@@ -139,8 +135,6 @@ app.post('/auth', (req, res) => {
     }
   });
 });
-
-
 
 app.get('/api/turnos', (req, res) => {
   const uri = 'http://localhost:8983/solr/turnos/select?q=*:*';

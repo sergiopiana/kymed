@@ -21,11 +21,11 @@ class loginPage extends React.Component {
               <div className="col-sm-5">
                   <form>
                     <div className="form-group">
-                      <label for="usuario">Usuario</label>
+                      <label >Usuario</label>
                       <input type="text" className="form-control" id="Usuario"  placeholder="Usuario"></input>
                     </div>
                     <div className="form-group">
-                      <label for="Password">Password</label>
+                      <label >Password</label>
                       <input type="password" className="form-control" id="Password" placeholder="Password"></input>
                     </div>
                     <button type="button" onClick={() => this.onLoginDataSubmit()} className="btn btn-primary" >Ingresar</button>

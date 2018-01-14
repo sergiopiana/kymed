@@ -8,28 +8,26 @@ import AltaForm from '../../containers/FormAlta';
 import LoginHome from '../../containers/loginHome';
 
 class HomePage extends React.Component {
- 
   render() {
-    if (_.isEmpty(this.props.auth)){
-    return(
-      <div className={s.root}>
-        <div className="container-fluid">
-        <LoginHome />        
+    if (_.isEmpty(this.props.auth)) {
+      return (
+        <div className={s.root}>
+          <div className="container-fluid">
+            <LoginHome />
+          </div>
         </div>
-      </div>     
-    )
+      );
     }
     return (
       <div className={s.root}>
         <div className="container-fluid">
-         <Home />
-         <AltaForm />
+          <Home />
+          <AltaForm />
         </div>
       </div>
     );
-
   }
-};
+}
 const mapStateToProps = state => ({
   auth: state.auth,
 });
