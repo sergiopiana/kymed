@@ -50,6 +50,7 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
+
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(
@@ -76,27 +77,7 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 
-// Obtener integrantes
-/* app.post('/obtenerIntegrantes', (req, res) => {
-  const contra = req.body.contra;
-  const url =
-    'http://192.168.104.127/smgapi/react/afiliado_datos_integrantes.php/';
-
-  const options = {
-    uri: url,
-    method: 'GET',
-  };
-
-  return request(options, (err, rsp, body) => {
-    if (err) return res.status(401).send(err);
-    if (!err && parseInt(rsp.statusCode, 10) === 200) {
-      res.setHeader('content-type', 'application/json');
-      return res.status(200).send(body);
-    }
-  });
-}); */
-
-app.post('/obtenerIntegrantes', (req, res) => {
+app.get('/obtenerIntegrantes', (req, res) => {
   const json = [
     {
       label: 'SERGIO LUIS PIANA',
@@ -155,63 +136,14 @@ app.post('/auth', (req, res) => {
   });
 });
 
-app.post('/renew-token', (req, res) => {
-  const url =
-    'https://mobile.swissmedical.com.ar/cl/api-smg/v0/auth-refresh-Client';
-  const { token } = req.body;
-
-  const json = {
-    refresh: {
-      tipodoc: 'DU',
-      canal: 'cfe67e56f3c90368a238',
-      device: {
-        bloqueado: true,
-        recordar: true,
-        deviceid: 'aaaaahhhgggkkkllllllllll',
-        messagingid: 'EsteEsElIDDeMensajeria',
-        nombre: 'Juauei 0.8 Mate',
-      },
-    },
-  };
-
-  const options = {
-    uri: url,
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      'Cache-Control': 'no-cache',
-      Authorization: `Bearer ${token}`,
-    },
-    json,
-  };
-
-  return request(options, (err, rsp, body) => {
-    if (err) {
-      return res.status(401).send(err);
-    }
-
-    if (parseInt(rsp.statusCode, 10) !== 200) {
-      return res.status(401).send(body);
-    }
-    if (!err && parseInt(rsp.statusCode, 10) === 200) {
-      res.setHeader('content-type', 'application/json');
-      return res.status(200).send(body);
-    }
-  });
-});
-
-app.post('/api/facturas', (req, res) => {
-  const uri =
-    'https://mobile.swissmedical.com.ar/cl/api-smg/v0/clientes/0441334/integrantes/01/facturas?desde=20160101&hasta=20170101';
-  const { token } = req.body;
+app.get('/api/turnos', (req, res) => {
+  const uri = 'http://localhost:8983/solr/turnos/select?q=*:*';
   const options = {
     uri,
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
     },
   };
 
@@ -219,11 +151,6 @@ app.post('/api/facturas', (req, res) => {
     if (err) {
       return res.status(401).send(err);
     }
-
-    if (parseInt(rsp.statusCode, 10) === 401) {
-      return res.status(401).send(body);
-    }
-
     if (!err && parseInt(rsp.statusCode, 10) === 200) {
       res.setHeader('content-type', 'application/json');
       return res.status(200).send(body);

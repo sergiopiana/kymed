@@ -3,7 +3,7 @@ import user from './user';
 import runtime from './runtime';
 import intl from './intl';
 import fechas from '../ducks/fechas';
-import pacientes from '../ducks/pacientes';
+import turnos from '../ducks/turnos';
 import auth from '../ducks/auth';
 
 export default function createRootReducer({ apolloClient }) {
@@ -14,7 +14,7 @@ export default function createRootReducer({ apolloClient }) {
     intl,
     auth,
     fechas,
-    pacientes,
+    turnos,
   });
 }
 
