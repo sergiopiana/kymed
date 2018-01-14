@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Home from '../../containers/Home';
+import Home from '../../containers/home';
 import s from './HomePage.css';
 import * as authActions from '../../ducks/auth';
 import AltaForm from '../../containers/FormAlta';

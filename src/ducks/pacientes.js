@@ -1,30 +1,35 @@
+import axios from 'axios';
 // CONSTANTS
 const FETCH_PACIENTES = 'pacientes/FETCH_PACIENTES';
 const FETCH_ADD_TURNO = 'pacientes/FETCH_ADD_TURNO';
 
 // ACTIONS
 export function fetchPacientes(){
-return dispatch =>{
-  fetch('api/turnos');
+    return function(){
+      return fetch('/api/turnos')
+        .then(function(response){console.log(response)});
+    }
 }
-  //type: FETCH_PACIENTES,
-};
+ 
+/*export function fetchPacientes(fecha){
+
+const request = axios.get('http://localhost:8983/solr/turnos/select?q=*:*');
+    
+return{
+    type: FETCH_PACIENTES,
+    payload:request,
+  }
+};*/
 
 export const fetchAddTurno = (dia,fecha,paciente,profesional,horario) => ({
   type: FETCH_ADD_TURNO,
   payload: {
-    idDia: '3',
-    dia, 
-    fecha,  
-    turnos:[
-            {
-              id:'4', 
-              paciente, 
-              profesional, 
-              horario 
-            }
-          ]
-        }
+    idTurno,
+    fecha,   
+    paciente, 
+    profesional, 
+    horario 
+  }
 });
 
 export const fetchPacientesAlta = () => ({
@@ -38,7 +43,7 @@ export default function reducer(state = [], action) {
   // const newState = { ...state };
   switch (action.type) {
     case FETCH_PACIENTES:
-        return[]
+        return[action.payload, ...state]
       /*return [
                   {idDia: '1', dia:'lunes', fecha:'01/01/2018',  turnos: [
                     {id:'1', paciente: 'Sergio Luis' , profesional: 'sasa papa', horario: '7.45' },

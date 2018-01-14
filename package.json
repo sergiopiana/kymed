@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "apollo-client": "^1.7.0",
-    "axios": "^0.16.2",
+    "axios": "^0.17.1",
     "babel-polyfill": "^6.23.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
@@ -212,7 +212,5 @@
     "serve": "babel-node tools/run runServer",
     "start": "babel-node tools/run start",
     "cc": "node tools/wizard.js cc"
-  },
-  "proxy":"http://localhost:8080"
-
+  }
 }

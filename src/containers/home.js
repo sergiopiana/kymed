@@ -14,7 +14,7 @@ componentDidMount() {
                 { this.props.pacientes.map((paciente) => (     
             <div className="col-sm">
 
-            <Card key={paciente.unique} dia={paciente.dia} fecha={paciente.fecha} turnos={paciente.turnos} />
+            <Card key={paciente.idTurno} dia={paciente.fecha} fecha={paciente.fecha} turnos={paciente.fecha} />
             </div>
         ))}
         </div>
