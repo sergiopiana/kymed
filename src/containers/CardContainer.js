@@ -4,10 +4,14 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Card.css';
 import CardHead from '../components/CardHead';
 import * as pacientesActions from '../ducks/pacientes';
+import * as turnosActions from '../ducks/turnos';
 import _ from 'lodash';
 
 class CardContainer extends React.Component {
 
+  componentDidMount(){
+    this.props.fetchTurnos(this.props.fecha)
+  }
   handleOnClick() {
     this.props.store.dispatch(addItem());
   }
@@ -15,7 +19,7 @@ class CardContainer extends React.Component {
     return(  
       <div>   
         { turnos.map((turno) => (  
-          <a key={turno.id} href="#" className="list-group-item list-group-item-action flex-column align-items-start"> 
+          <a  href="#" className="list-group-item list-group-item-action flex-column align-items-start"> 
           <div className="d-flex w-100 justify-content-between">
             <h5 className="mb-1">{turno.paciente}</h5>
             <small className={s.smallCenter}>
@@ -31,6 +35,7 @@ class CardContainer extends React.Component {
   
   render() {
     const turnos = this.props.turnos;
+    console.log("fecha"+this.props.fecha+"res"+turnos);
     if (_.isEmpty(turnos)){
       return(
         <div key={'loading'} >Loading...</div>
@@ -63,5 +68,7 @@ class CardContainer extends React.Component {
   }
 }
 
-
-export default ( withStyles(s)(CardContainer));
+const mapStateToProps = state => ({
+  turnos: state.turnos,
+});
+export default connect(mapStateToProps, turnosActions)(withStyles(s)(CardContainer));

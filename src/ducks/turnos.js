@@ -6,18 +6,19 @@ const FETCH_ADD_TURNO = 'pacientes/FETCH_ADD_TURNO';
 // ACTIONS
 
 
-export function fetchTurnos() {
+export function fetchTurnos(fecha) {
   return dispatch =>
-    fetch('/api/turnos')
+    fetch('/api/turnos?fecha='+fecha)
       .then(response => response.json())
-      .then(json => dispatch(fetchTurnosSuccess(json)));
+      .then(json => dispatch(fetchTurnosSuccess(json,fecha)));
 }
 
-function fetchTurnosSuccess(json) {
-  console.log(json.response.docs);
+function fetchTurnosSuccess(json,fecha) {
+ // console.log(json.response.docs);
   return {
     type: FETCH_TURNOS_LIST,
     data: json.response.docs,
+    fecha: fecha,
   };
 }
 
@@ -48,7 +49,10 @@ export default function reducer(state = [], action) {
   // const newState = { ...state };
   switch (action.type) {
     case FETCH_TURNOS_LIST:
-      return action.data;
+      return[ 
+        action.fecha,
+        action.data,
+      ]
     case FETCH_ADD_TURNO:
       return [...state, action.payload];
     default:

@@ -77,28 +77,6 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 
-app.get('/obtenerIntegrantes', (req, res) => {
-  const json = [
-    {
-      label: 'SERGIO LUIS PIANA',
-      inte: '01',
-      nombre: 'SERGIO LUIS',
-      apellido: 'PIANA',
-      edad: '20',
-      sexo: 'M',
-    },
-    {
-      label: 'URSULA LUCILA LLASER',
-      inte: '02',
-      nombre: 'URSULA LUCILA',
-      apellido: 'LLASER',
-      edad: '40',
-      sexo: 'F',
-    },
-  ];
-
-  res.status(200).send(json);
-});
 
 app.post('/auth', (req, res) => {
   const url =
@@ -137,7 +115,8 @@ app.post('/auth', (req, res) => {
 });
 
 app.get('/api/turnos', (req, res) => {
-  const uri = 'http://localhost:8983/solr/turnos/select?q=*:*';
+  const uri = 'http://localhost:8983/solr/turnos/select?fq=fecha:'+req.query.fecha+'&q=*:*&sort=horario%20asc';
+
   const options = {
     uri,
     method: 'GET',

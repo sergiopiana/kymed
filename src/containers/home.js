@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Card from './CardContainer';
-import * as turnosActions from '../ducks/turnos';
 import moment from 'moment';
 import momentTimezone from 'moment-timezone';
 
+
 class Home extends React.Component {
-  componentDidMount() {
-    this.props.fetchTurnos();
-  }
+
   render() {
     moment().tz('America/Argentina/Buenos_Aires');
     const turnos = this.props.turnos;
-    const fecha = new Date('2017-01-20');
+    const fecha = new Date('2018-01-20');
     console.log(fecha);
     moment().locale('es');
     const day1 = moment(fecha).format('DD-MM-YYYY');
@@ -44,38 +42,34 @@ class Home extends React.Component {
     return (
       <div className="row">
         <div className="col-sm">
-          <Card key={turnos.fecha} dia={fec1} fecha={day1} turnos={turnos} />
+          <Card key={day1} dia={fec1} fecha={day1} />
         </div>
         <div className="col-sm">
           <Card
-            key={turnos.fecha * 1}
+            key={day2}
             dia={fec2}
             fecha={day2}
-            turnos={turnos}
           />
         </div>
         <div className="col-sm">
           <Card
-            key={turnos.fecha + 2}
+            key={day3}
             dia={fec3}
             fecha={day3}
-            turnos={turnos}
           />
         </div>
         <div className="col-sm">
           <Card
-            key={turnos.fecha + 3}
+            key={day4}
             dia={fec4}
             fecha={day4}
-            turnos={turnos}
           />
         </div>
         <div className="col-sm">
           <Card
-            key={turnos.fecha + 4}
+            key={day5}
             dia={fec5}
             fecha={day5}
-            turnos={turnos}
           />
         </div>
       </div>
@@ -83,8 +77,4 @@ class Home extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  turnos: state.turnos,
-});
-
-export default connect(mapStateToProps, turnosActions)(Home);
+export default(Home);
