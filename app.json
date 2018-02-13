@@ -1,0 +1,21 @@
+{
+  "name": "kymed",
+  "scripts": {
+    "postdeploy": "npm instgal"
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
