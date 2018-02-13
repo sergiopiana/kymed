@@ -11,17 +11,20 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './FormAlta.css';
 import { connect } from 'react-redux';
-import * as pacientesActions from '../ducks/pacientes';
+import * as turnosActions from '../ducks/turnos';
 
 class FormAlta extends React.Component {
+  constructor(props){
+    super(props);
+  }
 
   click(){
-    const dia = $('#dia').val();
     const fecha = $('#fecha').val();
     const profesional = $('#profesional').val();
     const paciente = $('#paciente').val();
-    const hora = $('#hora').val();
-    this.props.fetchAddTurno(dia, fecha, paciente, profesional, hora);
+    const horario = $('#hora').val();
+    this.props.fetchTurnosAdd(fecha, paciente, profesional, horario);
+
   }
   
   render() {
@@ -31,8 +34,9 @@ class FormAlta extends React.Component {
         <link rel="stylesheet" href="/css/datepicker.css" />
         <script src="/js/bootstrap-datepicker.js" />
         <script src="/js/bootstrap-datepicker.es.js" />        
-
+         <form id="altaTurno">
             <div className="row">
+
               <div className="col-sm">
                 <div className="form-group">
                   <div className="input-group">
@@ -86,6 +90,7 @@ class FormAlta extends React.Component {
                 <span className="input-group-addon" id="basic-addon1">
                   <i className="fa fa-user-md" aria-hidden="true" />
                 </span>
+                
                 <input
                   type="text"
                   id="hora"
@@ -112,7 +117,7 @@ class FormAlta extends React.Component {
                 </div>
               </div>
             </div>
-
+        </form>            
       </div>
     </div>  
     );
@@ -123,6 +128,6 @@ const mapStateToProps = state => ({
   pacientes: state.pacientes,
 });
 
-export default connect(mapStateToProps, pacientesActions)(withStyles(s)(FormAlta),
+export default connect(mapStateToProps, turnosActions)(withStyles(s)(FormAlta),
 );
 

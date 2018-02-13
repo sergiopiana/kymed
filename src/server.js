@@ -137,6 +137,40 @@ app.get('/api/turnos', (req, res) => {
   });
 });
 
+app.get('/api/addTurnos', (req, res) => {
+  const uri = 'http://localhost:8983/solr/turnos/update?commit=true';
+
+  const options = {
+    uri,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    json:{
+      add:{
+        doc:{
+            fecha:req.query.fecha,
+            paciente:req.query.paciente, 
+            profesional:req.query.profesional, 
+            horario:req.query.horario 
+        }
+      }
+    }
+  };
+
+  request(options, (err, rsp, body) => {
+    if (err) {
+      return res.status(401).send(err);
+    }
+    if (!err && parseInt(rsp.statusCode, 10) === 200) {
+      res.setHeader('content-type', 'application/json');
+      return res.status(200).send(body);
+    }
+  });
+});
+
+
 //
 // Register API middleware
 // -----------------------------------------------------------------------------

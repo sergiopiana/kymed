@@ -4,17 +4,14 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Card.css';
 import CardHead from '../components/CardHead';
 import * as pacientesActions from '../ducks/pacientes';
-import * as turnosActions from '../ducks/turnos';
+
 import _ from 'lodash';
 
 class CardContainer extends React.Component {
+constructor(props) {
+    super(props);
+  }
 
-  componentDidMount(){
-    this.props.fetchTurnos(this.props.fecha)
-  }
-  handleOnClick() {
-    this.props.store.dispatch(addItem());
-  }
   renderHorarios(turnos){
     return(  
       <div>   
@@ -34,18 +31,14 @@ class CardContainer extends React.Component {
     )}
   
   render() {
-    const turnos = this.props.turnos;
-    console.log("fecha"+this.props.fecha+"res"+turnos);
-    if (_.isEmpty(turnos)){
-      return(
-        <div key={'loading'} >Loading...</div>
-      )
-    }
+  const turnos = this.props.turnos;
+  console.log(turnos);
+
     return (
     <div className={s.root}>
       <div className={s.container}>
 
-      <CardHead />
+      <CardHead/>
         <div className="card">
           <div className={s.cardTitle}>
           <p className={s.cardTitleText}>{this.props.dia}</p>
@@ -53,6 +46,7 @@ class CardContainer extends React.Component {
             </div>
           <div className="card-body" style={{ padding: '0px' }}>
             <div className="list-group">
+              
             { this.renderHorarios(turnos) }
             </div>
             <div style={{ padding: '10px', textAlign: 'right' }}>
@@ -68,7 +62,4 @@ class CardContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  turnos: state.turnos,
-});
-export default connect(mapStateToProps, turnosActions)(withStyles(s)(CardContainer));
+export default (withStyles(s)(CardContainer));
