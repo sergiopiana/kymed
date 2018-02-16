@@ -2,6 +2,7 @@
  * @author Juan Carlos Cancela <cancela.juancarlos@gmail.com>
  */
 
+
 /* eslint consistent-return: 0 */
 
 import path from 'path';
